@@ -4,37 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Mercado da Nat - Serviços</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+        }
+        header h1 {
+            font-size: 2.5rem;
+        }
+        header .nav-link {
+            color: white;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem 0;
+        }
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="bg-primary text-white text-center py-3">
         <h1>Mini Mercado da Nat</h1>
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="servicos.html">Serviços</a></li>
-                <li><a href="contato.html">Contato</a></li>
+            <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="produtos.html">Produtos</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="servicos.html">Serviços</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="contato.html">Cadastro</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main class="container my-5">
         <section>
-            <h2>Serviços</h2>
-            <article>
-                <p>Descrição: Retirada no Local</p>
-                <p>Valor: Gratuito</p>
-            </article>
-            <article>
-                <p>Descrição: Tele-entrega</p>
-                <p>Valor: R$10,00</p>
-            </article>
+            <h2 class="text-center mb-4">Agendamento de Serviços</h2>
+            <div class="form-container">
+                <form id="agendamentoForm">
+                    <!-- Opção de Serviço -->
+                    <div class="mb-3">
+                        <label for="servico" class="form-label">Escolha o Serviço</label>
+                        <select id="servico" name="servico" class="form-select" required>
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="retirada">Retirada no Local</option>
+                            <option value="tele-entrega">Tele-entrega</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="data" class="form-label">Escolha a Data</label>
+                        <input type="text" id="data" name="data" class="form-control" placeholder="Selecione uma data" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="horario" class="form-label">Escolha o Horário</label>
+                        <input type="time" id="horario" name="horario" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Agendar</button>
+                </form>
+            </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2024 Mini Mercado da Nat. Todos os direitos reservados.</p>
         <p>Contato: (XX) XXXX-XXXX | email@minimercado.com.br</p>
     </footer>
+
+    <script>
+        flatpickr("#data", {
+            enableTime: false,
+            dateFormat: "d/m/Y",
+            minDate: "today"
+        });
+
+        document.getElementById("agendamentoForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+            const servico = document.getElementById("servico").value;
+            const data = document.getElementById("data").value;
+            const horario = document.getElementById("horario").value;
+
+            alert(`Agendamento realizado com sucesso!\n\nServiço: ${servico}\nData: ${data}\nHorário: ${horario}`);
+        });
+    </script>
 </body>
 </html>
