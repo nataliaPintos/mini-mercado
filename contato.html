@@ -117,14 +117,10 @@
     </footer>
 
     <script>
-        // Intercepta o envio do formulário e exibe um alerta
         document.getElementById("cadastroForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Evita o envio padrão do formulário
-
-            // Exibe o alerta
+            event.preventDefault();
             alert("Cadastro realizado com sucesso!");
 
-            // Aqui você pode adicionar lógica para enviar os dados para o servidor
         });
     </script>
 </body>
